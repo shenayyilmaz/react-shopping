@@ -5,9 +5,10 @@ import CardIcon from "../card-icon/card-icon.component";
 import { connect } from "react-redux";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CardDropdown from "../card-dropdown/card-dropdown.component";
+
 import "./header.styles.scss";
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <Link className="logo-container" to="/">
       <Logo className="logo" />
@@ -30,11 +31,12 @@ const Header = ({ currentUser }) => (
       )}
       <CardIcon />
     </div>
-    <CardDropdown />
+    {hidden ? null : <CardDropdown />}
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, card: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 export default connect(mapStateToProps)(Header);
