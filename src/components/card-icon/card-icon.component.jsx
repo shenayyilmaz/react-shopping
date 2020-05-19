@@ -1,5 +1,6 @@
 import React from "react";
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
+import { createStructuredSelector } from "reselect";
 import { selectCardItemsCount } from "../../redux/card/card.selectors";
 import { toggleCardHidden } from "../../redux/card/card.actions";
 import { connect } from "react-redux";
@@ -12,8 +13,8 @@ const CardIcon = ({ toggleCardHidden, itemCount }) => (
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  itemCount: selectCardItemsCount(state),
+const mapStateToProps = createStructuredSelector({
+  itemCount: selectCardItemsCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({

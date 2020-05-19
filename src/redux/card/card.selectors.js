@@ -1,12 +1,16 @@
 import { createSelector } from "reselect";
 
-const selectCart = (state) => state.card;
+const selectCard = (state) => state.card;
 
 export const selectCardItems = createSelector(
-  [selectCart],
+  [selectCard],
   (card) => card.cardItems
 );
 
+export const selectCardHidden = createSelector(
+  [selectCard],
+  (card) => card.hidden
+);
 export const selectCardItemsCount = createSelector(
   [selectCardItems],
   (cardItems) =>
@@ -15,4 +19,12 @@ export const selectCardItemsCount = createSelector(
         accumulatedQuantity + cardItem.quantity,
       0
     )
+);
+
+export const selectTotalPrice = createSelector([selectCardItems], (cardItems) =>
+  cardItems.reduce(
+    (accumulatedQuantity, cardItem) =>
+      accumulatedQuantity + cardItem.quantity * cardItem.price,
+    0
+  )
 );
