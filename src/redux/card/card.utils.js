@@ -14,3 +14,19 @@ export const addItemToCard = (cardItems, cardItemToAdd) => {
 
   return [...cardItems, { ...cardItemToAdd, quantity: 1 }];
 };
+
+export const removeItemFromCard = (cardItems, cardItemToRemove) => {
+  const existingCardItem = cardItems.find(
+    (cardItem) => cardItem.id === cardItemToRemove.id
+  );
+
+  if (existingCardItem.quantity === 1) {
+    return cardItems.filter((cardItem) => cardItem.id !== existingCardItem.id);
+  }
+
+  return cardItems.map((cardItem) =>
+    cardItem.id === existingCardItem.id
+      ? { ...cardItem, quantity: cardItem.quantity - 1 }
+      : cardItem
+  );
+};

@@ -13,3 +13,8 @@ export const clearItemFromCard = (item) => ({
   type: CardActionTypes.CLEAR_ITEM_FROM_CARD,
   payload: item,
 });
+
+export const removeItemFromCard = (item) => ({
+  type: CardActionTypes.REMOVE_ITEM,
+  payload: item,
+});
