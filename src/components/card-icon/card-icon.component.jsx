@@ -6,6 +6,9 @@ import { toggleCardHidden } from "../../redux/card/card.actions";
 import { connect } from "react-redux";
 import "./card-icon.styles.scss";
 
+
+
+
 const CardIcon = ({ toggleCardHidden, itemCount }) => (
   <div className="cart-icon" onClick={toggleCardHidden}>
     <ShoppingIcon className="shopping-icon" />
